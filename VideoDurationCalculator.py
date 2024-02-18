@@ -10,7 +10,6 @@ def add_Duration_to_List():
     add_Duration_Total(duration_input) # Calls add_Duration_Total Function
     output_list = '\n'.join(map(str, duration_list))
     output_string.set(output_list)
-    print(duration_list)
 
 def calculate_time(total_seconds):
     hours, remainder = divmod(total_seconds, 3600)
@@ -21,10 +20,17 @@ def calculate_time(total_seconds):
 def add_Duration_Total(duration):
     try:
         global total_seconds
-        minutes, seconds = map(int, duration.split(':'))
-        converted_seconds = (minutes * 60) + seconds
-        total_seconds += converted_seconds
-        print(total_seconds) 
+        if ':' in duration:  # Check if ':' exists in the duration (hh:mm:ss format)
+            parts = list(map(int, duration.split(':')))
+            if len(parts) == 3:
+                hours, minutes, seconds = parts
+                converted_seconds = (hours * 3600) + (minutes * 60) + seconds
+                total_seconds += converted_seconds
+        else:  # Assume mm:ss format
+            minutes, seconds = map(int, duration.split(':'))
+            converted_seconds = (minutes * 60) + seconds
+            total_seconds += converted_seconds
+        
         output_total_string.set(f"Total: {calculate_time(total_seconds)}")
         sub_title.config(foreground='black')
     except ValueError:
@@ -43,47 +49,37 @@ def add_Duration_Total(duration):
 
         flash_label_color(0)
 
-        
-
 # window
 window = ttk.Window()
 window.title('Video Duration Calculator')
 window.geometry('400x700')
 
 # title
-title_label = ttk.Label(master = window, text = 'Video Duration Calculator', font = 'Calibri 24 bold')
+title_label = ttk.Label(master=window, text='Video Duration Calculator', font='Calibri 24 bold')
 title_label.pack()
 
 # sub title
-sub_title = ttk.Label(master = window, text = 'Enter video duration (mm:ss):', font = 'Calibri 12' )
+sub_title = ttk.Label(master=window, text='Enter video duration (hh:mm:ss):', font='Calibri 12')
 sub_title.pack()
 
 # input field
-input_frame = ttk.Frame(master = window)
+input_frame = ttk.Frame(master=window)
 duration_int = tk.StringVar()
-duration_entry = ttk.Entry(master = input_frame, textvariable = duration_int)
-button = ttk.Button(master = input_frame, text = 'Add', command = add_Duration_to_List)
-duration_entry.pack(side = 'left', padx = 10)
-button.pack(side = 'left')
-input_frame.pack(pady = 10)
+duration_entry = ttk.Entry(master=input_frame, textvariable=duration_int)
+button = ttk.Button(master=input_frame, text='Add', command=add_Duration_to_List)
+duration_entry.pack(side='left', padx=10)
+button.pack(side='left')
+input_frame.pack(pady=10)
 
 # output list of duration input by user
 output_string = tk.StringVar()
-number_label = ttk.Label(master = window, 
-                         text = 'Output', 
-                         font = 'Calibri 16 bold', 
-                         textvariable = output_string)
-number_label.pack(pady = 10) 
+number_label = ttk.Label(master=window, text='Output', font='Calibri 16 bold', textvariable=output_string)
+number_label.pack(pady=10)
 
 # output current duration total
 output_total_string = tk.StringVar()
-total_duration_label = ttk.Label(master = window, 
-                         text = 'Output', 
-                         font = 'Calibri 24 bold', 
-                         textvariable = output_total_string)
-total_duration_label.pack(pady = 4)
-
+total_duration_label = ttk.Label(master=window, text='Output', font='Calibri 24 bold', textvariable=output_total_string)
+total_duration_label.pack(pady=4)
 
 # run
 window.mainloop()
-
