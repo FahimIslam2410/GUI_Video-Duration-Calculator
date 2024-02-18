@@ -14,7 +14,7 @@ I designed this program as a practical exercise to develop my Tkinter skills and
 
 ## Usage
 
-1. Enter the video duration in the format "mm:ss" into the input field.
+1. Enter the video duration in the format "hh:mm:ss" into the input field.
 2. Click the "Add" button to add the duration to the list.
 3. The list of input durations is displayed in the GUI.
 4. The total duration is continuously updated and shown on the GUI.
@@ -39,5 +39,6 @@ Replace `video_duration_calculator.py` with the actual filename of your Python s
 
 # Examples
 
-![image](https://github.com/FahimIslam2410/GUI_Video-Duration-Calculator/assets/120402745/b8368bd9-dd57-4896-a77e-71c6b0f46f85)
-![image](https://github.com/FahimIslam2410/GUI_Video-Duration-Calculator/assets/120402745/ea3494bf-2610-4663-a751-9232936fed4d)
+![image](https://github.com/FahimIslam2410/GUI_Video-Duration-Calculator/assets/120402745/3ea8c184-d29c-4b9b-9a4a-606bd41269e2)
+![image](https://github.com/FahimIslam2410/GUI_Video-Duration-Calculator/assets/120402745/3eec9596-5d14-4d4d-8d3e-8668e0d20f17)
+
